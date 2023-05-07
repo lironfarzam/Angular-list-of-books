@@ -1,0 +1,103 @@
+<div class="row">
+  <div class="col">
+    <div class="card">
+      <div class="card-header">
+        <h2>Edit mode</h2>
+      </div>
+      <div class="card-body">
+        <div *ngIf="book">
+          <div>
+            title of book: <input [(ngModel)]="book.title" placeholder="name" />
+          </div>
+          <div>
+            author of book: <input [(ngModel)]="book.author" placeholder="author" />
+          </div>
+          <div>
+            genre of book:
+            <div class="input-group">
+              <label class="input-group-text" for="inputGroupSelect01">Options</label>
+              <select class="form-select" id="inputGroupSelect01" [(ngModel)]="selectedGenre">
+                <option selected>Choose...</option>
+                <option value="Fiction">Fiction</option>
+                <option value="Mystery">Mystery</option>
+                <option value="Horror">Horror</option>
+                <option value="Romance">Romance</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            publis date of book: <input [(ngModel)]="book.publishedDate" placeholder="publish date" />
+          </div>
+          <div>
+            cost of book: <input [(ngModel)]="book.price" placeholder="cost" />
+          </div>
+          <div>
+            <button (click)="updateBook(book)" *ngIf="book.id">Update</button>
+            <button (click)="deleteBook(book)" *ngIf="book.id">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <h2>Create a new book</h2>
+      </div>
+      <div class="card-body">
+        <div *ngIf="!book">
+          <div>
+            title of book: <input [(ngModel)]="newBook.title" placeholder="name" />
+            <div [ngStyle]="{'color': 'red'}" *ngIf="b_errorMsgTitle">{{errorMsgTitle}}</div>
+          </div>
+            author of book: <input [(ngModel)]="newBook.author" placeholder="author" />
+            <div [ngStyle]="{'color': 'red'}" *ngIf="b_errorMsgAuthor">{{errorMsgAuthor}}</div>
+          </div>
+          <div>
+            genre of book:
+            <div class="input-group">
+              <label class="input-group-text" for="inputGroupSelect02">Options</label>
+              <select class="form-select" id="inputGroupSelect02" [(ngModel)]="selectedGenre">
+                <option selected>Choose...</option>
+                <option value="Fiction">Fiction</option>
+                <option value="Mystery">Mystery</option>
+                <option value="Horror">Horror</option>
+                <option value="Romance">Romance</option>
+              </select>
+            </div>
+              <div [ngStyle]="{'color': 'red'}" *ngIf="b_errorMsgGenre">{{errorMsgGenre}}</div>
+          </div>
+          <div>
+            publis date of book:<input [(ngModel)]="newBook.publishedDate" placeholder="Publish Date" [ngModelOptions]="{ standalone: true }" type="date" />
+            <div [ngStyle]="{'color': 'red'}" *ngIf="b_errorMsgPublishedDate">{{errorMsgPublishedDate}}</div>
+          </div>
+          <div>
+            <div>
+            cost of book: <input [(ngModel)]="newBook.price" placeholder="cost" />
+            <div [ngStyle]="{'color': 'red'}" *ngIf="b_errorMsgPrice">{{errorMsgPrice}}</div>
+          </div>
+          <div>
+            <button (click)="createBook(newBook)">Create</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <div class="col">
+    <div class="card">
+      <div class="card-header">
+        <h2>Delete book by ID</h2>
+      </div>
+      <div class="card-body">
+        <div>
+          <div>
+            ID of book: <input [(ngModel)]="deleteId" placeholder="id" />
+            <div [ngStyle]="{'color': 'red'}" *ngIf="b_errorMsgId">{{errorMsgId}}</div>
+          </div>
+          <div>
+            <button (click)="deleteBookById(deleteId)">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

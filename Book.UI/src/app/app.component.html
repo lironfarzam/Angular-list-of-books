@@ -1,0 +1,21 @@
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+</head>
+
+
+<body>
+<button class="btn btn-primary" (click)="editMod()">Create new book</button>
+
+<div class="container">
+  <div *ngIf ="!activeClass">
+    <app-book-table [books]="books"></app-book-table>
+  </div>
+ 
+  <div *ngIf ="activeClass"> 
+    <app-edit-book [book]="bookToEdit"(bookCreated)="onBookCreated($event)"
+                                      (bookUpdated)="onBookUpdated($event)"
+                                      (bookDeleted)="onBookDeleted($event)"></app-edit-book>
+  </div>
+</div>
+
+</body>
